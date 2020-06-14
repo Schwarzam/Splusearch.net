@@ -1,0 +1,35 @@
+{% extends "index/base.html" %}
+{% block main %}
+<div style="width:80%; margin:2% auto 2% auto; display:flex;">
+<h1 style="font-family: 'Montserrat', sans-serif;">{{request.user.username}}</h1>
+<a href="{% url 'logout' %}" style="margin-top:0.6%;"><button type="button" style="margin-left:50%;" class="btn btn-warning">Logout</button>
+  </a>
+</div>
+    <h3 style="width:80%; margin:auto;">Saved: </h3>
+    <table class="table" style="width:80%; margin:auto;">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">ID</th>
+      <th scope="col">RA</th>
+      <th scope="col">Dec</th>
+      <th scope="col">Access</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for value in saved %}
+    <tr>
+      <th scope="row"><button type="button" onclick=deletar(this) class="btn btn-light" value={{value.id}} class="btn btn-light">Delete
+      </button></th>
+      <td>{{value.id}}</td>
+      <td>{{value.ra}}</td>
+      <td>{{value.dec}}</td>
+      <td><a class="btn-link" href="{% url 'searchfromprof' param=value.id %}">
+        <button type="button" onclick=searchfromprof(this) class="btn btn-outline-info" value='{{value.id}}' class="btn btn-light">Go to object</button>
+        </a>
+    </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{%endblock%}

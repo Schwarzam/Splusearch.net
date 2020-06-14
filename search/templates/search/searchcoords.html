@@ -1,0 +1,114 @@
+{% extends "index/base.html" %}
+{% block main %}
+<div style="margin: 5% auto 3% auto;">
+{% for key,value in df.iterrows %}
+<div class="oneresult">
+  <div class="tablesresult">
+    <table class="table" id="twelvefilters">
+      <tbody class="thead-dark">
+        <tr>
+          <th scope="row" class="thead">uJAVA_auto</th>
+            <td class="tbody">{{value.uJAVA_auto}}</td>
+            </tr>
+          <th scope="row" class="thead">F378_auto</th>
+            <td class="tbody">{{value.F378_auto}}</td>
+              </tr>
+          <th scope="row" class="thead">F395_auto</th>
+            <td class="tbody">{{value.F395_auto}}</td>
+              </tr>
+          <th scope="row" class="thead">F410_auto</th>
+            <td class="tbody">{{value.F410_auto}}</td>
+              </tr>
+          <th scope="row" class="thead">F430_auto</th>
+            <td class="tbody">{{value.F430_auto}}</td>
+              </tr>
+          <th scope="row" class="thead">g_auto</th>
+            <td class="tbody">{{value.g_auto}}</td>
+              </tr>
+          <th scope="col" class="thead">F515_auto</th>
+            <td class="tbody">{{value.F515_auto}}</td>
+              </tr>
+          <th scope="col" class="thead">r_auto</th>
+            <td class="tbody">{{value.r_auto}}</td>
+              </tr>
+          <th scope="col" class="thead">i_auto</th>
+            <td class="tbody">{{value.i_auto}}</td>
+              </tr>
+          <th scope="col" class="thead">F660_auto</th>
+            <td class="tbody">{{value.F660_auto}}</td>
+              </tr>
+          <th scope="col" class="thead">F861_auto</th>
+            <td class="tbody">{{value.F861_auto}}</td>
+              </tr>
+          <th scope="col" class="thead">z_auto</th>
+            <td class="tbody">{{value.z_auto}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+        <table class="table table-striped" id="objresultab">
+          <thead>
+            <tr>
+              <th scope="col">Parameters</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>ID</td>
+              <td>{{value.ID}}</td>
+            </tr>
+            <tr>
+              <td>RA</td>
+              <td>{{value.RA}}</td>
+            </tr>
+            <tr>
+              <td>Dec</td>
+              <td>{{value.Dec}}</td>
+            </tr>
+            <tr>
+              <td>PhotoFlag</td>
+              <td>{{value.PhotoFlag}}</td>
+            </tr>
+            <tr>
+              <td>FWHM</td>
+              <td>{{value.FWHM}}</td>
+            </tr>
+            <tr>
+              <td>FIELD STATUS</td>
+              <td>{{value.FieldS}}</td>
+            </tr>
+          </tbody>
+        </table>
+        <div style="justify-content:center; align-items:center;margin-right:3.5%;margin-top:3.5%;">
+      <p> <img src="{{value.image}}"> </p>
+      <p> <img src="{{value.image2}}"> </p>
+    </div>
+    </div>
+    <div id="plots" class="row">
+      <p class="column"><img src="data:image/png;base64, {{ value.result }}" width="420px"></p>
+      <p style="margin-left:3%" class="column"><img src="data:image/png;base64, {{ value.result2 }}" width="420px"></p>
+      </div>
+  <div class="yourvalues">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Your values: </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+    <tbody></tbody>
+    <tr>
+      <td>RA: {{value.SFRA}}</td>
+      <td>Dec: {{value.SFDec}}</td>
+    </tr>
+    </table>
+  </div>
+  <button id="save" type="button" onclick="save(this)" class="btn btn-outline-info" value="{{value.ID}}">
+  Save!
+  </button>
+  </div>
+</div>
+    {% endfor %}
+  </div>
+{% endblock %}

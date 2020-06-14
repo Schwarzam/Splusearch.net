@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="{% static 'index/style.css' %}">
+  <script src="{% static 'index/save.js' %}"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;500&family=Montserrat:wght@500&display=swap" rel="stylesheet">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Dosis&family=Montserrat:ital,wght@1,300&display=swap" rel="stylesheet">
+  <title>SPLUSearch</title>
+</head>
+<body>
+  {% block content %}
+  {% endblock %}
+    <nav id="navbar" style="background: url('{% static '/index/back1.jpg' %}');background-position-y:bottom; background-position-x: center;">
+        <ul class="nav-links">
+          <li class="nav-link" id="Logo"><a href="{% url 'index-home' %}"><img src="{% static 'index/s.jpg' %}" alt="" width="60"><p>S-PLUS</p></a></li>
+          <li class="nav-link" id="Search"><a href="{% url 'searchby' %}">Search Object</a></li>
+          {% if user.is_authenticated %}
+          <li class="nav-link" id="Login" ><a href="{% url 'profile' %}">{{ user.username }}</a></li>
+          {% else %}
+          <li class="nav-link" id="Login" ><a href="{% url 'login' %}">Login</a></li>
+          {% endif %}
+        </ul>
+    </nav>
+  {% if messages %}
+    {% for message in messages %}
+        <div id="messages">
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" style="margin-top:0.3%;" role="alert">
+             <strong>{{message}}</strong>
+             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+             </button>
+           </div>
+         </div>
+    {% endfor %}
+  {% endif %}
+
+  {% block main %}
+  {% endblock %}
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

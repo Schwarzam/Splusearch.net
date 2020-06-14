@@ -1,0 +1,44 @@
+{% extends "index/base.html" %}
+{% block main %}
+
+<div class="scont">
+  <div class="srow">
+    <div class="scol">
+      <form method="POST" action="{% url 'searchcoords' %}">
+        {% csrf_token %}
+        <fieldset>
+            <legend class="border-bottom mb-4">Search by RA and Dec: </legend>
+            <div class="md-form active-cyan active-cyan-2 mb-3" style="display:flex">
+              <input placeholder="RA" class="form-control" type="text" name="RA"/>
+            </div>
+              <div class="md-form active-cyan active-cyan-2 mb-3">
+                <input placeholder="Dec" class="form-control" type="text" name="Dec"/>
+                <button type="submit" class="btn btn-dark" style="margin-top: 5%">Search</button>
+              </div>
+      </form>
+    </div>
+    <div class="vertline"></div>
+    <div class="scol">
+      <form method="POST" action="{% url 'searchid' %}">
+        {% csrf_token %}
+          <fieldset>
+              <legend class="border-bottom mb-4">Search by S-PLUS ID: </legend>
+              <div class="md-form active-cyan active-cyan-2 mb-3">
+                <input class="form-control" type="text" name="gal"/>
+                <button type="submit" style="margin-top:5%;"class="btn btn-dark">Search</button>
+          </div>
+      </form>
+    </div>
+  </div>
+  <div class="srow" id="csv">
+    <form method=post enctype=multipart/form-data action="{% url 'upload' %}">
+      {% csrf_token %}
+      <fieldset>
+          <legend class="border-bottom mb-4">Upload a csv file: </legend>
+                <input type="file" name="csvfile" value="">
+                <input type="submit" value="Upload" class="btn btn-dark">
+    </form>
+  </div>
+</div>
+
+{% endblock %}
